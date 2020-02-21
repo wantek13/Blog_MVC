@@ -1,0 +1,45 @@
+<?php 
+	require '_header.phtml';
+    require '_menu.phtml';
+?>
+
+<!----------------Sections--------------------------------->
+<p class="align-self-center mx-auto">
+	<a class="btn btn-success" href="blog/create">Creer un article</a>
+</p>
+
+<div class="container">
+        <div class="row">
+        <?php foreach($articles as $article):?>
+        
+        <div class="col-lg-6">
+            <div id="empty" class="card" style="18rem">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="<?php echo $article['img'] ?>" alt="card image">
+
+                <div class="card-body">
+                    <h3><strong><?php echo $article['titre'] ?></strong></h3>
+                    <!-- <a class="btn btn-secondary" href="update.php?id=<?php echo $article['id'] ?>">Modifier</a>
+                    <a class="btn btn-danger" href="delete.php?id=<?php echo $article['id'] ?>">Supprimer</a> -->
+                    <p><?php 
+                            $resume = $article['contenu'];
+                            echo substr($resume, 0, 300). '...';
+                        ?>
+                    </p>
+                    <a href="blog/article?id=<?= $article['id'] ?>" class="btn btn-primary">Voir plus</a>
+                        <p><?php echo $article['dateRedaction'] ?></p>
+                        <div class="btn-group">
+                        <button class="btn btn-outline-info"><?= '<i class="fas fa-thumbs-up"></i>' ?></button>
+                        <button class="btn btn-outline-info"><?= '<i class="far fa-comments"></i>' . $article['nbComms'] ?></button>
+                        <button class="btn btn-outline-info"><?= '<i class="fas fa-share-square"></i>' ?></button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <?php endforeach; ?>
+        </div>
+</div>
+
+<!---------------FinSection--------------------------------->
+ </body>
+ </html>
